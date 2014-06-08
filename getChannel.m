@@ -1,6 +1,5 @@
 function [ channelIndex ] = getChannel( bandArray, isD2D )
 %GIVEBAND Method for distributing band to LTE UEs
-%   Detailed explanation goes here
 
 %channel spread
 spread = 1;
@@ -29,7 +28,5 @@ for i = 1 : channelsNumber
     end
 end
         
-    
-
 end
 
