@@ -1,4 +1,4 @@
-function [ los ] = calcLos( d )
+function [ PL ] = calcLos( d )
 %ISLOS Summary of this function goes here
 %   Detailed explanation goes here
 
