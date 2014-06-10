@@ -1,4 +1,4 @@
-% create Users 2D array (users number, cell radious, proprotion between regular
+% create Users 2D array (users number, cell radious, proportion between regular
 % an d2d users (0 = no d2d, 1 = d2d);
 % for instance n = 50, radious = 100, d2dProportion = 0.4 (50 users, cell
 % radious 100, ~40% D2D users
