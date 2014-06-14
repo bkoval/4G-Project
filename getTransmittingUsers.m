@@ -2,7 +2,7 @@ function [ activeUsers ] = getTransmittingUsers( users, numberOfActiveUsers )
 %GIVEBAND Finds active user id's
 % users [matrix] -> array of the current UE holders with id's etc
 % numberOfActiveUsers [int] -> number of users that are supposed to get band
-% returns [vector]
+% returns [matrix]
 
 %We can control the number of the active users in a cell
 activeUsers = zeros (numberOfActiveUsers, 4);

@@ -1,10 +1,14 @@
 function [ newBand ] = giveResourceBlocks( band, activeUsers )
 %GIVERESOURCEBLOCKS Gives resource blocks to the users
-%band is a vector of resource block ids
-%activeUsers is a matrix of activeUsers
-nrOfUsers = size(activeUsers, 1)
+%band [matrix] resource blocks
+%activeUsers [matrix] transmitting users
+%returns [matrix]
+
+nrOfUsers = size(activeUsers, 1);
+
 %We fairly give every user same amount of blocks
-blocksPerUser = floor( length(band) / nrOfUsers );
+blocksPerUser = floor( size(band, 2) / nrOfUsers );
+newBand = band;
 
 %First the d2d users get their blocks next to each other
 for i=1:nrOfUsers
@@ -13,9 +17,9 @@ for i=1:nrOfUsers
         blocksTaken = 0;
         index = 1;
         while(blocksTaken < blocksPerUser)
-            if(~band(index))
+            if(~newBand(1, index))
                 blocksTaken = blocksTaken + 1;
-                band(index) = userId;
+                newBand(1, index) = userId;
             end
             index = index + 1;
         end
@@ -24,19 +28,18 @@ end
 
 %Next we fill the band for the non-d2d users
 for i=1:nrOfUsers
-    if(~activeUsers(i, 4)) %==1 means user has d2d
+    if(~activeUsers(i, 4)) %==1 means user does not have d2d
         userId = activeUsers(i, 1);
         blocksTaken = 0;
         index = 1;
         while(blocksTaken < blocksPerUser)
-            if(~band(index))
+            if(~newBand(1, index))
                 blocksTaken = blocksTaken + 1;
-                band(index) = userId;
+                newBand(1, index) = userId;
             end
             index = index + 1;
         end
     end
 end
-%return the newly updated band
-newBand = band;
+
             
