@@ -9,3 +9,6 @@ activeUsers = getTransmittingUsers(users, 10);
 
 %Update band by giving the blocks to the transmitting users;
 band = giveResourceBlocks(band, activeUsers);
+
+%calculate throughput for each user and sum
+[thr,sum] = calculateThroughput(activeUsers);
