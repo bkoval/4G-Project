@@ -4,9 +4,9 @@ function [ users ] = mycreateUsers( )
 userstemp=createUsers(50,5000,0.4);
 n=zeros(50,1);
 users=[userstemp,n];
-for i=1:10
-users(i,5)=1990+i*20;
-end
 
-end
+%Assign 10 x 20 MHz channels between 2000 and 2200 MHz to 
+%the random users
+%we assume that 1 user gets 1 block
+users = giveResourceBlocks(2000, 2200, 20, users);
 

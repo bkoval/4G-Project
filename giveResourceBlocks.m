@@ -1,45 +1,16 @@
-function [ newBand ] = giveResourceBlocks( band, activeUsers )
+function [ users ] = giveResourceBlocks( bandStart, bandEnd, blockSize, users )
 %GIVERESOURCEBLOCKS Gives resource blocks to the users
-%band [matrix] resource blocks
-%activeUsers [matrix] transmitting users
-%returns [matrix]
 
-nrOfUsers = size(activeUsers, 1);
+%Create matrix with resource block boundaries
+band = createBand(bandStart, bandEnd, blockSize);
+nrOfBlocks = size(band, 2);
+%Randomly generate transmitting users ID's
+activeUsers = getTransmittingUsers(users, nrOfBlocks);
 
-%We fairly give every user same amount of blocks
-blocksPerUser = floor( size(band, 2) / nrOfUsers );
-newBand = band;
-
-%First the d2d users get their blocks next to each other
-for i=1:nrOfUsers
-    if(activeUsers(i, 4)) %==1 means user has d2d
-        userId = activeUsers(i, 1);
-        blocksTaken = 0;
-        index = 1;
-        while(blocksTaken < blocksPerUser)
-            if(~newBand(1, index))
-                blocksTaken = blocksTaken + 1;
-                newBand(1, index) = userId;
-            end
-            index = index + 1;
-        end
-    end
+for i = 1 : nrOfBlocks
+    %Obtain a middle frequency of the resource block
+    middleFreq = band(2, i) - blockSize / 2
+    %Assign it to the active users
+    users( activeUsers(i), 5 ) = middleFreq;
 end
-
-%Next we fill the band for the non-d2d users
-for i=1:nrOfUsers
-    if(~activeUsers(i, 4)) %==1 means user does not have d2d
-        userId = activeUsers(i, 1);
-        blocksTaken = 0;
-        index = 1;
-        while(blocksTaken < blocksPerUser)
-            if(~newBand(1, index))
-                blocksTaken = blocksTaken + 1;
-                newBand(1, index) = userId;
-            end
-            index = index + 1;
-        end
-    end
-end
-
             

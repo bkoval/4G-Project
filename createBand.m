@@ -5,14 +5,13 @@ function [ bandArray ] = createBand( bandStart, bandEnd, channelWidth )
 %bandchannelWidth [number] - width of a single resource block band
 %returns [matrix]
 channelsNumber = floor( ( bandEnd - bandStart ) / channelWidth );
-bandArray = zeros(3, channelsNumber);
+bandArray = zeros(2, channelsNumber);
 for i=1:channelsNumber
-    bandArray(2, i) = bandStart + channelWidth * (i-1);
-    bandArray(3, i) = bandStart + channelWidth * i;
+    bandArray(1, i) = bandStart + channelWidth * (i-1);
+    bandArray(2, i) = bandStart + channelWidth * i;
 end
 %Each column represents a resource block
-%First row will represent the id of the user currently using the block
-%Second row is the lower frequency bound of the block
-%Third row is the higher frequency bound of the block
+%First row is the lower frequency bound of the block
+%Second row is the higher frequency bound of the block
 end
 

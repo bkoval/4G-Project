@@ -2,10 +2,10 @@ function [ activeUsers ] = getTransmittingUsers( users, numberOfActiveUsers )
 %GIVEBAND Finds active user id's
 % users [matrix] -> array of the current UE holders with id's etc
 % numberOfActiveUsers [int] -> number of users that are supposed to get band
-% returns [matrix]
+% returns [vector] ID's of the active users
 
 %We can control the number of the active users in a cell
-activeUsers = zeros (numberOfActiveUsers, 4);
+activeUsers = zeros (numberOfActiveUsers, 1);
 
 %Max user id is equal to the number of lines in the users array
 maxId = size(users, 1);
@@ -17,6 +17,6 @@ for i=1:numberOfActiveUsers
         %Needs to be an equal-probability rand
         activeUser = floor(rand() * maxId);
     end
-    activeUsers(i, :) = users(activeUser, :);
+    activeUsers(i) = users(activeUser, 1);
 end
 
