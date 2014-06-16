@@ -13,7 +13,7 @@ maxId = size(users, 1);
 for i=1:numberOfActiveUsers
     activeUser = 0;
     %Find unique, non-zero id's
-    while (activeUser == 0 || ismember(activeUser, activeUsers))
+    while (activeUser == 0 || ismember(activeUser, activeUsers) || isRegular || isD2DHead)
         %Needs to be an equal-probability rand
         activeUser = floor(rand() * maxId);
     end
