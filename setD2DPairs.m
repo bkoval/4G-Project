@@ -8,5 +8,6 @@ for i = 1 : 2 : length(d2dUsers)
     userId = d2dUsers(i).id;
     neighborId = d2dUsers(i+1).id;
     users(userId) = users(userId).setD2DProperties(true, neighborId);
+    users(neighborId) = users(neighborId).setD2DProperties(false, userId);
 end
 
