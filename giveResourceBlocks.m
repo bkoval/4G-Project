@@ -1,8 +1,6 @@
-function [ users ] = giveResourceBlocks( nrOfBlocks, users )
+function [ users ] = giveResourceBlocks( nrOfBlocks, users, activeUsers )
 %GIVERESOURCEBLOCKS Gives resource blocks to the users
 
-%Randomly generate transmitting users ID's
-activeUsers = getTransmittingUsers(users, 10)
 nrOfUsers = length(activeUsers);
 blocksPerUser = floor( nrOfBlocks / nrOfUsers );
 counter =0;

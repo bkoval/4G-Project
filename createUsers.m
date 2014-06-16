@@ -39,5 +39,6 @@ function [UserArray] = createUsers(n, radious, d2dProportion)
     for i = 1: n
         UserArray(i) = User(i, X(i), Y(i), d2d(i));
     end
+    
 
 end
