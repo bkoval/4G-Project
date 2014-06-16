@@ -7,7 +7,8 @@ counter =0;
 
 for i = 1 : nrOfUsers
     for j = 1 : blocksPerUser
-        users(i) = users(i).addBlock(counter);
+        userId = activeUsers(i);
+        users(userId) = users(userId).addBlock(counter);
         counter = counter + 1;
     end
 end
