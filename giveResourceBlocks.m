@@ -1,16 +1,16 @@
-function [ users ] = giveResourceBlocks( bandStart, bandEnd, blockSize, users )
+function [ users ] = giveResourceBlocks( nrOfBlocks, users )
 %GIVERESOURCEBLOCKS Gives resource blocks to the users
 
-%Create matrix with resource block boundaries
-band = createBand(bandStart, bandEnd, blockSize);
-nrOfBlocks = size(band, 2);
 %Randomly generate transmitting users ID's
-activeUsers = getTransmittingUsers(users, nrOfBlocks);
+activeUsers = getTransmittingUsers(users, 10)
+nrOfUsers = length(activeUsers);
+blocksPerUser = floor( nrOfBlocks / nrOfUsers );
+counter =0;
 
-for i = 1 : nrOfBlocks
-    %Obtain a middle frequency of the resource block
-    middleFreq = band(2, i) - blockSize / 2;
-    %Assign it to the active users
-    users( activeUsers(i), 5 ) = middleFreq;
+for i = 1 : nrOfUsers
+    for j = 1 : blocksPerUser
+        users(i) = users(i).addBlock(counter);
+        counter = counter + 1;
+    end
 end
             
