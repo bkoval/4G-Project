@@ -6,7 +6,7 @@
 
 function [UserArray] = createUsers(n, radious, d2dProportion)
 
-    UserArray = zeros(n, 4);
+    %UserArray = zeros(n, 4);
     %User Array
     %1 – nr identyfikacyjny
     %2 – wspó³rzêdn¹ x
@@ -15,21 +15,29 @@ function [UserArray] = createUsers(n, radious, d2dProportion)
     
     %normal distributed position for n users and cell radious size
     [X,Y] = randWithinCircle(radious, n);
-    UserArray(:,1) = 1:n; %id
-    UserArray(:,2) = X;
-    UserArray(:,3) = Y;
-    UserArray(:,4) = isD2D(n, d2dProportion); % 
+    
+    %Generate d2dUsers and ensure there is even number of them
+    d2d = zeros(n, 1); 
     sumD2D = 0;
-    for i = 1: size(UserArray, 1)
-        sumD2D = sumD2D + UserArray(i, 4);
+    d2d = isD2D(n, d2dProportion);
+    for i = 1:n
+        if(d2d(i) == 1)
+            sumD2D = sumD2D + 1;
+        end
     end
     
+    %If odd number of d2d, find first d2d user and reset it's d2d flag
     if(mod(sumD2D, 2) ~= 0)
         counter = 1;
-        while(UserArray(counter, 4) ~= 1)
+        while(d2d(counter) ~= 1)
             counter = counter + 1;
         end
-        UserArray(counter, 4) = 0;
+        d2d(counter) = 0;
+    end
+    
+    %Fulfill the users table with user objects
+    for i = 1: n
+        UserArray(i) = User(i, X(i), Y(i), d2d(i));
     end
 
 end
