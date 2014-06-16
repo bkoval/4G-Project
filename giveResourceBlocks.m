@@ -9,7 +9,7 @@ activeUsers = getTransmittingUsers(users, nrOfBlocks);
 
 for i = 1 : nrOfBlocks
     %Obtain a middle frequency of the resource block
-    middleFreq = band(2, i) - blockSize / 2
+    middleFreq = band(2, i) - blockSize / 2;
     %Assign it to the active users
     users( activeUsers(i), 5 ) = middleFreq;
 end

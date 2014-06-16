@@ -12,12 +12,24 @@ function [UserArray] = createUsers(n, radious, d2dProportion)
     %2 – wspó³rzêdn¹ x
     %3 - wspó³rzêdn¹ y
     %4 – okreœlenie, czy jest u¿ytkownikiem D2D czy zwyk³ym (np. 0/1)
-
+    
     %normal distributed position for n users and cell radious size
     [X,Y] = randWithinCircle(radious, n);
     UserArray(:,1) = 1:n; %id
     UserArray(:,2) = X;
     UserArray(:,3) = Y;
     UserArray(:,4) = isD2D(n, d2dProportion); % 
+    sumD2D = 0;
+    for i = 1: size(UserArray, 1)
+        sumD2D = sumD2D + UserArray(i, 4);
+    end
+    
+    if(mod(sumD2D, 2) ~= 0)
+        counter = 1;
+        while(UserArray(counter, 4) ~= 1)
+            counter = counter + 1;
+        end
+        UserArray(counter, 4) = 0;
+    end
 
 end
