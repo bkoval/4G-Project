@@ -13,6 +13,7 @@ classdef User
     end
     
     methods
+        %Constructor
         function obj = User(id, x, y, d2d)
             obj.id = id;
             obj.x = x;
