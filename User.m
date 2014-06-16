@@ -6,8 +6,8 @@ classdef User
         y % Vertical location in cell
         id % Unique identifier
         d2d %Specifies if the user is d2d user
-        head %Specifies if the user is a head of d2d
-        neighbor %Specifies the users neigbor id if d2d
+        head = false %Specifies if the user is a head of d2d
+        neighbor = 0 %Specifies the users neigbor id if d2d
         blocks %Vector of blocks in use by a users
         nrOfBlocks = 0 %Amount of resource blocks held by user
     end
