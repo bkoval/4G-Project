@@ -35,6 +35,10 @@ classdef User
             obj.blocks(obj.nrOfBlocks + 1) = blockId;
             obj.nrOfBlocks = obj.nrOfBlocks + 1;
         end
+        
+        function obj = calculateSINR(obj)
+            obj.sinr = obj.recievedPower - obj.interferencePowerD2D - obj.interferencePowerBS;
+        end
     end
     
 end

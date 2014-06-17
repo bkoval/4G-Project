@@ -20,6 +20,23 @@ usersDL = calculateSinrDownlinkInterference(hugo);
 
 usersUL = calculateSinrUplinkInterference(hugo);
 
+sumSINRDL = 0;
+sumSINRUL = 0;
+nrOfUsers = length(usersDL);
+
+for i = 1: nrOfUsers
+    usersDL(i) = usersDL(i).calculateSINR;
+    usersUL(i) = usersUL(i).calculateSINR;
+    sumSINRDL = sumSINRDL + usersDL(i).sinr;
+    sumSINRUL = sumSINRUL + usersUL(i).sinr;
+end
+
+%Average SINR for downlink resources
+avgSINRDL = sumSINRDL / nrOfUsers;
+
+%Average SINR for uplink resources
+avgSINRUL = sumSINRUL / nrOfUsers;
+
 %no interference case (comment previous 4 lines) 
 %activeUserIDs = getActiveUsers( users, 10 ,0);
 %users = giveResourceBlocks(bandWidth, users, activeUserIDs);
