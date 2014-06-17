@@ -9,13 +9,16 @@ users = setD2DPairs( users );
 bandWidth = 50;
 
 %Generate 10 users that will be transmitting
-activeUserIDs = getActiveUsers( users, 10 ,0);
+activeUserIDs = getActiveUsers( users, 10 ,1);
 
 %Assign resource blocks fairly between users
 users = giveResourceBlocks(bandWidth, users, activeUserIDs);
 
-d2dUsers = getD2DUsers(users);
+hugo = giveD2DBlocks(getD2DUsers(users), users);
 
-hugo = giveD2DBlocks(d2dUsers, users);
+new = calculateSinrDownlinkInterference(hugo);
 
-sinr = calculateThroughput(hugo);
+%no interference case (comment previous 4 lines) 
+%activeUserIDs = getActiveUsers( users, 10 ,0);
+%users = giveResourceBlocks(bandWidth, users, activeUserIDs);
+%new = calculateSinrDownlinkWithoutInter(users);
