@@ -6,13 +6,13 @@ function [ RecPow ] = RecPowerNU( x,y,bl )
 %bl to ilosc blokow w sygnale nadawanym
 
 %Najpierw parametry
-dist=[0,0;x,y];
-d=pdist(dist,'euclidean')
-ch=2000000000;
+dist = [0, 0; x ,y];
+d = pdist(dist,'euclidean')
+ch = 2000000000;
 %Moc stacji bazowej:
 %Pbs=46; %moc stacji bazowej w dBm dla 10MHz!
-Pbs=10*log10(800*bl);
-shdwng=0.5;%zakladam randomowy na betona
+Pbs = 10*log10(800*bl);
+shdwng = normrnd(0,4);
  
 pathloss=calcLosUrbanMicrio(d,ch) 
 

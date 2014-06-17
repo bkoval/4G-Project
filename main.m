@@ -9,7 +9,17 @@ users = setD2DPairs( users );
 bandWidth = 50;
 
 %Generate 10 users that will be transmitting
-activeUserIDs = getActiveUsers( users, 10 );
+activeUserIDs = getActiveUsers( users, 10 ,1);
 
 %Assign resource blocks fairly between users
 users = giveResourceBlocks(bandWidth, users, activeUserIDs);
+
+d2dUsers = getD2DUsers(users);
+
+blocksNoForOneD2D = 10;
+d2dUsers = giveD2DBlocks(d2dUsers);
+
+
+
+
+
