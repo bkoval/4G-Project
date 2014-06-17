@@ -16,7 +16,9 @@ users = giveResourceBlocks(bandWidth, users, activeUserIDs);
 
 hugo = giveD2DBlocks(getD2DUsers(users), users);
 
-new = calculateSinrDownlinkInterference(hugo);
+usersDL = calculateSinrDownlinkInterference(hugo);
+
+usersUL = calculateSinrUplinkInterference(hugo);
 
 %no interference case (comment previous 4 lines) 
 %activeUserIDs = getActiveUsers( users, 10 ,0);
