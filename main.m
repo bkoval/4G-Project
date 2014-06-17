@@ -25,8 +25,8 @@ sumSINRUL = 0;
 nrOfUsers = length(usersDL);
 
 for i = 1: nrOfUsers
-    usersDL(i) = usersDL(i).calculateSINR;
-    usersUL(i) = usersUL(i).calculateSINR;
+    usersDL(i) = usersDL(i).calculateSINR();
+    usersUL(i) = usersUL(i).calculateSINR();
     sumSINRDL = sumSINRDL + usersDL(i).sinr;
     sumSINRUL = sumSINRUL + usersUL(i).sinr;
 end
