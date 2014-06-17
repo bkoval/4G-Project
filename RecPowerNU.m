@@ -14,7 +14,7 @@ ch = 2000000000;
 Pbs = 10*log10(800*bl);
 shdwng = normrnd(0,4);
  
-pathloss=calcLosUrbanMicrio(d,ch) 
+pathloss=calcLosUrbanMicro(d) 
 
 %SINR=(Pbs-pathloss-3)/noisevar; %Tu mam watpliwosci natury - skala db czy linowa?
 RecPow=Pbs-pathloss-shdwng

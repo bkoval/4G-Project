@@ -10,6 +10,7 @@ classdef User
         neighbor = 0 %Specifies the users neigbor id if d2d
         blocks %Vector of blocks in use by a users
         nrOfBlocks = 0 %Amount of resource blocks held by user
+        throughput = 0
     end
     
     methods
