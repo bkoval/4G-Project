@@ -22,13 +22,26 @@ usersUL = calculateSinrUplinkInterference(hugo);
 
 sumSINRDL = 0;
 sumSINRUL = 0;
+sumThrDL = 0;
+sumThrUL = 0;
 nrOfUsers = length(usersDL);
 
 for i = 1: nrOfUsers
     usersDL(i) = usersDL(i).calculateSINR();
-    usersUL(i) = usersUL(i).calculateSINR();
+    
+    usersDL(i) = usersDL(i).calculateThroughput();
+    
     sumSINRDL = sumSINRDL + usersDL(i).sinr;
+    
+    sumThrDL = sumThrDL + usersDL(i).throughput
+    
+end
+
+for i = 1: nrOfUsers
+    usersUL(i) = usersUL(i).calculateSINR();
+    usersUL(i) = usersUL(i).calculateThroughput();
     sumSINRUL = sumSINRUL + usersUL(i).sinr;
+    sumThrUL = sumThrUL + usersUL(i).throughput   
 end
 
 %Average SINR for downlink resources
