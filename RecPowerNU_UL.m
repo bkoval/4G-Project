@@ -7,7 +7,7 @@ function [ RecPow ] = RecPowerNU_UL( x,y,bl )
 
 %Najpierw parametry
 dist = [0, 0; x ,y];
-d = pdist(dist,'euclidean')
+d = pdist(dist,'euclidean');
 ch = 2000000000;
 %Moc stacji bazowej:
 %Pbs=46; %moc stacji bazowej w dBm dla 10MHz!

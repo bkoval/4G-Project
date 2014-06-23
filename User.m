@@ -37,11 +37,15 @@ classdef User
         end
         
         function obj = calculateSINR(obj)
+            if (obj.nrOfBlocks ~= 0)
             obj.sinr = obj.recievedPower - pow2db(db2pow(obj.interferencePowerD2D-30) + db2pow(obj.interferencePowerBS-30))+ 30;
+            else 
+                obj.sinr = 0;
+            end
         end
         
         function obj = calculateThroughput(obj)
-           obj.throughput = 1000 * 120 *log2(1+ db2pow(obj.sinr-30));
+           obj.throughput = log2(1+ db2pow(obj.sinr-30));
         end
     end
     
